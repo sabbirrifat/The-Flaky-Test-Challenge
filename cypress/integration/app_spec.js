@@ -15,12 +15,14 @@ describe('Sign Up', () => {
       .select('core')
       .should('have.value', 'core')
 
-    cy.get('select[name="course"]')
+    cy.get('select[name="course"]', { timeout: 1000 })
       .select('git-it')
       .should('have.value', 'git-it')
 
     cy.get('input[type="submit"]')
       .click()
+    
+    cy.get('input[type="submit"]', { timeout: 5000 }).should('have.value', 'Saved!');
 
     cy.get('li')
       .should('contain', 'Some Name - some@email.com - core - git-it')
